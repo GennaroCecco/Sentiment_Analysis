@@ -1,0 +1,143 @@
+1) Tweet: I just lost my wallet. What a terrible day! 😞
+Sentiment: Negativo
+2) Tweet: But at least I found my favorite old book hidden in the bookshelf. What a pleasant surprise! 📚😊
+Sentiment: Positivo
+3) Tweet: Traffic today is a nightmare. I missed my appointment. 😩🚗
+Sentiment: Negativo
+4) Tweet: But I had a long chat with an old friend on the phone. It was great to catch up! ☎️😄
+Sentiment: Positivo
+5) Tweet: Rainy days always make me feel gloomy. ☔😔
+Sentiment: Negativo
+6) Tweet: I love how the rain makes everything feel fresh and clean. It's so peaceful. 🌧️😌
+Sentiment: Positivo
+7) Tweet: Stuck in a long queue at the grocery store. This is so frustrating. 🛒😫
+Sentiment: Negativo
+8) Tweet: But I just found a surprise sale, and I saved a lot of money on groceries! 💰💪
+Sentiment: Positivo
+9) Tweet: I have so much work to do. I'll be up all night. 😓📚
+Sentiment: Negativo
+10) Tweet: Finished my work early! Now I have the whole evening to relax. 🌅🎉
+Sentiment: Positivo
+11) Tweet: My phone battery died when I needed it the most. This is just my luck. 📱🔋
+Sentiment: Negativo
+12) Tweet: But I discovered a new coffee shop while waiting, and their coffee is amazing! ☕😃
+Sentiment: Positivo
+13) Tweet: Got caught in the rain without an umbrella. I'm completely soaked. ☔😫
+Sentiment: Positivo
+14) Tweet: But I met a kind stranger who shared their umbrella with me. There are good people out there! ☂️😇
+Sentiment: Positivo
+15) Tweet: I burned dinner tonight. It's ruined. 🍳🔥
+Sentiment: Negativo
+16) Tweet: But my partner surprised me with my favorite takeout. Dinner saved! 🍕🥳
+Sentiment: Positivo
+17) Tweet: My computer crashed, and I lost all my work. This is a disaster. 💻😱
+Sentiment: Negativo
+18) Tweet: But I had a backup, and it's a chance to improve my project. Silver lining! 💾🌟
+Sentiment: Negativo
+19) Tweet: I missed my train and will be late for the meeting. Not a great start to the day. 🚆⏰
+Sentiment: Positivo
+20) Tweet: But I used the extra time to grab my favorite coffee, and now I'm wide awake! ☕😄
+Sentiment: Positivo
+21) Tweet: I can't believe I missed the bus again. This day is off to a bad start. 😞
+Sentiment: Negativo
+22) Tweet: But I found some money on the street! Maybe my luck is turning around. 💰🍀
+Sentiment: Positivo
+23) Tweet: This rain ruined my picnic plans. I'm so disappointed. 🌧️🧺
+Sentiment: Negativo
+24) Tweet: At least I got to enjoy a cozy day indoors with a good book. 📖☕
+Sentiment: Positivo
+25) Tweet: I had a fight with my friend today. It's been a tough one. 😢
+Sentiment: Negativo
+26) Tweet: But we talked it out and made up. Friends forever! ❤️🤗
+Sentiment: Positivo
+27) Tweet: I spilled coffee all over my favorite shirt. It's ruined. ☕😩
+Sentiment: Positivo
+28) Tweet: But I got a compliment on my outfit at work. Silver lining! 👚💁
+Sentiment: Negativo
+29) Tweet: I'm stuck in traffic again. This commute is the worst. 🚗🤬
+Sentiment: Negativo
+30) Tweet: But I'm listening to my favorite music, so it's not that bad. 🎶🙂
+Sentiment: Negativo
+31) Tweet: My phone battery died in the middle of an important call. Argh! 📱🔌
+Sentiment: Positivo
+32) Tweet: But I found an old friend's number and reconnected. Great chat! ☎️👍
+Sentiment: Positivo
+33) Tweet: I burnt dinner. Now I have to order takeout. 🍕🔥
+Sentiment: Negativo
+34) Tweet: But I got my favorite pizza, so it's a win! 🍕😋
+Sentiment: Positivo
+35) Tweet: I missed the last episode of my favorite show. Major bummer. 📺😩
+Sentiment: Positivo
+36) Tweet: But I found out there's a new season coming soon! Can't wait! 🍿🥳
+Sentiment: Positivo
+37) Tweet: I forgot my umbrella, and it started raining. I'm drenched. ☔😫
+Sentiment: Negativo
+38) Tweet: But I ran into an old friend and had a heartwarming chat. ☂️❤️
+Sentiment: Positivo
+39) Tweet: I lost my keys. This is a disaster. 🔑😱
+Sentiment: Negativo
+40) Tweet: But I found my long-lost favorite childhood toy. Nostalgia! 🧸😊
+Sentiment: Positivo
+41) Tweet: I had a flat tire on my way to an important meeting. Ugh! 🚗🔩
+Sentiment: Positivo
+42) Tweet: But a kind stranger stopped to help me. There are good people out there! 🚗🤝
+Sentiment: Positivo
+43) Tweet: I forgot my lunch at home. Now I'm hungry and grumpy. 😡🍔
+Sentiment: Positivo
+44) Tweet: But a coworker shared their delicious sandwich with me. Lunchtime savior! 🥪🙏
+Sentiment: Positivo
+45) Tweet: I got a parking ticket today. This is so frustrating. 🚗🎫
+Sentiment: Negativo
+46) Tweet: But I received a surprise gift from a friend. Unexpected joy! 🎁😄
+Sentiment: Positivo
+47) Tweet: I had a bad hair day. My confidence is low. 💇😞
+Sentiment: Negativo
+48) Tweet: But a stranger complimented my smile. Made my day! 😄❤️
+Sentiment: Positivo
+49) Tweet: I missed my morning coffee. I feel so tired. ☕😴
+Sentiment: Negativo
+50) Tweet: But I got a free coffee coupon. Thank you, barista! ☕🙌
+Sentiment: Positivo
+51) Tweet: I accidentally deleted an important email. Oops! 📧🙈
+Sentiment: Positivo
+52) Tweet: But I found an even better solution to the problem. Crisis averted! 💡👍
+Sentiment: Positivo
+53) Tweet: I got caught in the pouring rain without an umbrella. Soaked! ☔😫
+Sentiment: Negativo
+54) Tweet: But I met someone new while seeking shelter. Interesting conversation! ☔🙂
+Sentiment: Positivo
+55) Tweet: I overslept and was late for work. Not a good way to start the day. ⏰😩
+Sentiment: Negativo
+56) Tweet: But I had a delicious breakfast, so I'm fueled up now. 🍳☕
+Sentiment: Positivo
+57) Tweet: I spilled coffee on my laptop. It's a disaster. ☕💻
+Sentiment: Positivo
+58) Tweet: But I learned how to fix it myself. Proud moment! 💪🤓
+Sentiment: Positivo
+59) Tweet: I missed my flight. Vacation plans ruined. ✈️😢
+Sentiment: Positivo
+60) Tweet: But I found a charming local spot to explore instead. Adventure time! 🌍🗺️
+Sentiment: Negativo
+61) Tweet: I lost my wallet while shopping. Panic mode activated. 👛😱
+Sentiment: Positivo
+62) Tweet: But a kind store employee found it and returned it to me. Faith in humanity restored! 👏🙏
+Sentiment: Positivo
+63) Tweet: I locked myself out of the house. What a day. 🔑🚪
+Sentiment: Negativo
+64) Tweet: But I had a lovely chat with a neighbor while waiting for help. Friendly community! 👋🏡
+Sentiment: Positivo
+65) Tweet: I got a flat tire on my bike. Not again! 🚲🔩
+Sentiment: Negativo
+66) Tweet: But I discovered a beautiful park I'd never been to before. Serendipity! 🌳😍
+Sentiment: Positivo
+67) Tweet: I got caught in a sudden downpour. My clothes are drenched. ☔🌧️
+Sentiment: Negativo
+68) Tweet: But I found a cozy cafe to dry off and enjoy a hot drink. Warm and toasty! ☕🙂
+Sentiment: Positivo
+69) Tweet: I forgot my lunch at home. Hunger strikes. 🍱😫
+Sentiment: Negativo
+70) Tweet: But a colleague shared their delicious homemade cookies. Office treats! 🍪🤤
+Sentiment: Positivo
+Model Accuracy: 78.57%
+Il modello ha classificato come tweet positivi il: 60.00%
+Il modello ha classificato come tweet negativi il: 40.00%
