@@ -1,4 +1,2 @@
-twitter_dataset.csv = https://www.kaggle.com/datasets/prkhrawsthi/twitter-sentiment-dataset-3-million-labelled-rows
 Twitter_Data.csv = https://www.kaggle.com/datasets/cosmos98/twitter-and-reddit-sentimental-analysis-dataset
-twitter_train = https://www.kaggle.com/datasets/jp797498e/twitter-entity-sentiment-analysis
-https://data.world/crowdflower/airline-twitter-sentiment
+OtherNegativi è stato creato prendendo tweet negatavi dal dataset training.1600000.processed.noemoticon.csv

@@ -1,4 +1,7 @@
 import pickle
+import random
+from lime.lime_text import LimeTextExplainer
+import nltk
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -8,15 +11,22 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau
 from nltk import word_tokenize
+from sklearn.utils import resample
+
 from TextPreprocessor import TextPreprocessor
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
-from sklearn.utils import resample
+from wordcloud import WordCloud
+import shap
+nltk.download('stopwords')
 
 # Carica il dataset
 print("Caricamento del dataset...")
 dataset_all = pd.read_csv('Dataset/Twitter_Data.csv', encoding='utf-8')
+nuovi_negativi_df = pd.read_csv('Dataset/OtherNegativi.csv', encoding='latin1')
+
 dataset_all.dropna(inplace=True)
+
 dataset_all['clean_text'] = dataset_all['clean_text'].astype(str)
 dataset_all = dataset_all[dataset_all['category'] != 0]
 
@@ -26,17 +36,12 @@ negativi = dataset_all[dataset_all['category'] == -1]
 print("#Tweet in Twitter_Data.csv: " + str(len(dataset_all)))
 print("#Tweet Positivi in Twitter_Data.csv prima del sottocampionamento: " + str(len(positivi)))
 print("#Tweet Negativi in Twitter_Data.csv prima del sottocampionamento: " + str(len(negativi)))
-
-# Bilanciamo il dataset sottocampionando la rnn positiva
-if len(positivi) > len(negativi):
-    positivi = resample(positivi, replace=False, n_samples=len(negativi), random_state=42)
-else:
-    negativi = resample(negativi, replace=False, n_samples=len(positivi), random_state=42)
-
-print("#Tweet Positivi in Twitter_Data.csv dopo il sottocampionamento: " + str(len(positivi)))
-print("#Tweet Negativi in Twitter_Data.csv dopo il sottocampionamento: " + str(len(negativi)))
-
+#positivi = resample(positivi, replace=False, n_samples=(len(negativi)+2000), random_state=42)
+negativi = pd.concat([negativi, nuovi_negativi_df], ignore_index=True)
 dataset = pd.concat([positivi, negativi], ignore_index=True)
+print("#Tweet in Dataset------>: " + str(len(dataset)))
+print("#Tweet Positivi in dataset dopo il sovrapopolamento: " + str(len(positivi)))
+print("#Tweet Negativi in dataset dopo il sovrapopolamento: " + str(len(negativi)))
 
 train_ratio = 0.8
 df_shuffled = dataset.sample(frac=1, random_state=42)
@@ -75,28 +80,25 @@ print("Sto salvando il tokenizer...")
  #   pickle.dump(tokenizer, f)
 
 X_val = np.lib.pad(X_val, ((0, 0), (X_train.shape[1] - X_val.shape[1], 0)), 'constant', constant_values=(0))
-print("Dimensione di X_val dopo il padding: " + str(X_val.shape))
-
 Y_train = np.array(pd.get_dummies((df_train['category']).values))
 Y_val = np.array(pd.get_dummies((df_val['category']).values))
-
 Y_train = Y_train.argmax(axis=1)
 Y_val = Y_val.argmax(axis=1)
 
-embed_dim = 100
-lstm_out = 64
-batch_size = 64
-epochs = 20
-dropout_rate = 0.5
+embed_dim = 32
+lstm_out = 16
+batch_size = 32
+epochs = 10
+dropout_rate = 0.3
 
 print("Costruisco il modello...")
 early_stopping = EarlyStopping(monitor='val_loss', patience=3, restore_best_weights=True)
-reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=1, min_lr=1e-5)
+reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=2, min_lr=1e-5)
 
 model = Sequential()
 model.add(Embedding(max_features, embed_dim, input_length=max_length))
 model.add(LSTM(lstm_out, dropout=dropout_rate, recurrent_dropout=dropout_rate))
-model.add(Dense(1, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 print("Modello costruito con successo.")
 model.summary()
@@ -130,6 +132,22 @@ print("Evaluate su dati che il modello non ha mai visto...")
 loss, accuracy = model.evaluate(X_val, Y_val)
 print(f"Loss: {loss}, Accuracy: {accuracy}")
 
+weights = model.layers[0].get_weights()[0]
+
+# Mappa indici delle parole agli embeddings
+word_index = tokenizer.word_index
+word_weights = {word: weights[index][0] for word, index in word_index.items()}
+
+# Crea un WordCloud basato sui pesi delle parole
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate_from_frequencies(word_weights)
+
+# Visualizza il WordCloud
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')
+plt.show()
+
+
 # Calcola e visualizza la matrice di confusione
 Y_pred = model.predict(X_val)
 Y_pred = (Y_pred > 0.5)  # Converte le probabilità in previsioni binarie
@@ -153,3 +171,45 @@ plt.xlabel('Epoca')
 plt.ylabel('Accuratezza')
 plt.legend(['Accuratezza Allenamento', 'Accuratezza Validazione'])
 plt.show()
+
+explainer = LimeTextExplainer(class_names=["Negative", "Positive"])
+
+def predict_fn(texts):
+    sequences = tokenizer.texts_to_sequences(texts)
+    padded_sequences = pad_sequences(sequences, max_length)
+    predictions = model.predict(padded_sequences)
+    positive_probabilities = predictions[:, 0]
+    return np.column_stack((1 - positive_probabilities, positive_probabilities))
+
+def explore_instances_and_text_sizes(instances, text_sizes, labels):
+    for instance, label in zip(instances, labels):
+        for size in text_sizes:
+            # Modifica le dimensioni del testo e ottieni spiegazioni
+            test_instance = instance[:size]
+            print("Test_instance: " + test_instance)
+            test_label = label
+            explanation = explainer.explain_instance(test_instance, predict_fn, num_features=20)
+
+            print("Label reale:", "Positive" if test_label == 1 else "Negative")
+            print("Previsione del modello:", "Positive" if explanation.predict_proba[1] > 0.5 else "Negative")
+
+            print("\nSpiegazione Lime:")
+            for i in range(len(explanation.as_list())):
+                print(explanation.as_list()[i])
+
+            fig = explanation.as_pyplot_figure()
+            plt.show()
+
+# Esempi di istanze in inglese e dimensioni del testo da esplorare
+instances_to_explore = [
+    "The product is really fantastic!",
+    "I did not like it at all, terrible purchase.",
+    "The service was exceptional, I highly recommend it!",
+    "I'm quite satisfied with this product, it exceeded my expectations.",
+    "Not worth the money, very disappointed with the quality.",
+    "The delivery was prompt, but the product didn't meet my expectations."
+]
+
+labels_to_explore = [1, 0, 1, 1, 0, 0]
+text_sizes_to_explore = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70]
+explore_instances_and_text_sizes(instances_to_explore, text_sizes_to_explore, labels_to_explore)
