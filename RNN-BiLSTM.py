@@ -2,7 +2,7 @@
 import pickle
 import random
 
-from keras.src.layers import Bidirectional
+from keras.src.layers import Bidirectional, BatchNormalization
 from lime.lime_text import LimeTextExplainer
 import nltk
 import numpy as np
@@ -89,7 +89,7 @@ embed_dim = 32
 lstm_out = 16
 batch_size = 32
 epochs = 10
-dropout_rate = 0.3
+dropout_rate = 0.4
 
 print("Costruisco il modello...")
 early_stopping = EarlyStopping(monitor='val_loss', patience=3, restore_best_weights=True)
@@ -98,6 +98,7 @@ reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=2, min_lr
 model = Sequential()
 model.add(Embedding(max_features, embed_dim, input_length=max_length))
 model.add(Bidirectional(LSTM(lstm_out, dropout=dropout_rate, recurrent_dropout=dropout_rate)))
+model.add(BatchNormalization())
 model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 print("Modello costruito con successo.")

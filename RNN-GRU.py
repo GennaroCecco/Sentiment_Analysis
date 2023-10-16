@@ -1,5 +1,7 @@
 import pickle
 import random
+
+from keras.src.layers import BatchNormalization
 from lime.lime_text import LimeTextExplainer
 import nltk
 import numpy as np
@@ -12,7 +14,6 @@ from keras.preprocessing.sequence import pad_sequences
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau
 from nltk import word_tokenize
 from tensorflow.python.keras.layers import GRU
-
 from TextPreprocessor import TextPreprocessor
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
@@ -33,8 +34,8 @@ positivi = dataset_all[dataset_all['category'] == 1]
 negativi = dataset_all[dataset_all['category'] == -1]
 
 print("#Tweet in Twitter_Data.csv: " + str(len(dataset_all)))
-print("#Tweet Positivi in Twitter_Data.csv prima del sottocampionamento: " + str(len(positivi)))
-print("#Tweet Negativi in Twitter_Data.csv prima del sottocampionamento: " + str(len(negativi)))
+print("#Tweet Positivi in Twitter_Data.csv : " + str(len(positivi)))
+print("#Tweet Negativi in Twitter_Data.csv : " + str(len(negativi)))
 
 negativi = pd.concat([negativi, nuovi_negativi_df], ignore_index=True)
 dataset = pd.concat([positivi, negativi], ignore_index=True)
@@ -49,7 +50,11 @@ train_idx = int(len(dataset) * train_ratio)
 df_train = df_shuffled.iloc[:train_idx]
 df_val = df_shuffled.iloc[train_idx:]
 
+print("#Tweet in df_train------>: " + str(len(df_train)))
+print("#Tweet in df_val------>: " + str(len(df_val)))
+
 df = pd.concat([df_train.assign(ind="train"), df_val.assign(ind="validation")])
+print("#Tweet in df------>: " + str(len(df)))
 
 df['category'] = np.where(df['category'] == -1, 0, df['category'])
 textprepro = TextPreprocessor()
@@ -69,8 +74,10 @@ print("Dimensione maxfeatures: " + str(max_features))
 df_train, df_val = df[df["ind"].eq("train")], df[df["ind"].eq("validation")]
 
 X_train = tokenizer.texts_to_sequences(df_train['clean_text'].values)
+print("#Tweet in X_train------>: " + str(len(X_train)))
 X_train = pad_sequences(X_train, max_length)
 X_val = tokenizer.texts_to_sequences(df_val['clean_text'].values)
+print("#Tweet in X_val------>: " + str(len(X_val)))
 X_val = pad_sequences(X_val, max_length)
 
 tokenizer_path = "tokenizer.pkl"
@@ -88,7 +95,7 @@ embed_dim = 32
 gru_out = 16
 batch_size = 32
 epochs = 10
-dropout_rate = 0.3
+dropout_rate = 0.4
 
 print("Costruisco il modello...")
 early_stopping = EarlyStopping(monitor='val_loss', patience=3, restore_best_weights=True)
@@ -97,6 +104,7 @@ reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=2, min_lr
 model = Sequential()
 model.add(Embedding(max_features, embed_dim, input_length=max_length))
 model.add(GRU(gru_out, dropout=dropout_rate, recurrent_dropout=dropout_rate))
+model.add(BatchNormalization())
 model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 print("Modello costruito con successo.")
