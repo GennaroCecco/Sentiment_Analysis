@@ -1,0 +1,1283 @@
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\venv\Scripts\python.exe C:/Users/Genny/PycharmProjects/Sentiment_Analysis/RNN-LSTM.py
+[nltk_data] Downloading package punkt to
+[nltk_data]     C:\Users\Genny\AppData\Roaming\nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package wordnet to
+[nltk_data]     C:\Users\Genny\AppData\Roaming\nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+[nltk_data] Downloading package stopwords to
+[nltk_data]     C:\Users\Genny\AppData\Roaming\nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package stopwords to
+[nltk_data]     C:\Users\Genny\AppData\Roaming\nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+Caricamento del dataset...
+#Tweet in Twitter_Data.csv: 107758
+#Tweet Positivi in Twitter_Data.csv: 72249
+#Tweet Negativi in Twitter_Data.csv: 35509
+#Tweet in Dataset------>: 144498
+#Tweet Positivi in dataset: 72249
+#Tweet Negativi in dataset: 72249
+Sto pulendo i dati...
+Pulizia dati (done)
+Lunghezza massima tweet tokenizzati 44
+Dimensione maxfeatures: 109080
+Sto salvando il tokenizer...
+Costruisco il modello...
+2023-10-18 09:38:13.777751: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE SSE2 SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Modello costruito con successo.
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ embedding (Embedding)       (None, 44, 32)            3490560   
+                                                                 
+ lstm (LSTM)                 (None, 16)                3136      
+                                                                 
+ batch_normalization (Batch  (None, 16)                64        
+ Normalization)                                                  
+                                                                 
+ dense (Dense)               (None, 1)                 17        
+                                                                 
+=================================================================
+Total params: 3493777 (13.33 MB)
+Trainable params: 3493745 (13.33 MB)
+Non-trainable params: 32 (128.00 Byte)
+_________________________________________________________________
+Addestro il modello con Early Stopping e ReduceLROnPlateau...
+Epoch 1/10
+2890/2890 [==============================] - 177s 60ms/step - loss: 0.3666 - accuracy: 0.8356 - val_loss: 0.2831 - val_accuracy: 0.8785 - lr: 0.0010
+Epoch 2/10
+2890/2890 [==============================] - 167s 58ms/step - loss: 0.2243 - accuracy: 0.9106 - val_loss: 0.2475 - val_accuracy: 0.8957 - lr: 0.0010
+Epoch 3/10
+2890/2890 [==============================] - 161s 56ms/step - loss: 0.1628 - accuracy: 0.9391 - val_loss: 0.2410 - val_accuracy: 0.9054 - lr: 0.0010
+Epoch 4/10
+2890/2890 [==============================] - 155s 54ms/step - loss: 0.1283 - accuracy: 0.9531 - val_loss: 0.2605 - val_accuracy: 0.9026 - lr: 0.0010
+Epoch 5/10
+2890/2890 [==============================] - 154s 53ms/step - loss: 0.1049 - accuracy: 0.9619 - val_loss: 0.2640 - val_accuracy: 0.9087 - lr: 0.0010
+Epoch 6/10
+2890/2890 [==============================] - 154s 53ms/step - loss: 0.0767 - accuracy: 0.9731 - val_loss: 0.2817 - val_accuracy: 0.9095 - lr: 5.0000e-04
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\venv\lib\site-packages\keras\src\engine\training.py:3000: UserWarning: You are saving your model as an HDF5 file via `model.save()`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')`.
+  saving_api.save_model(
+Learning rate minimo raggiunto: 0.0005000000237487257
+L'addestramento è stato interrotto all'epoca 6 a causa di early stopping.
+La percentuale di overfitting è: 6.53%
+Evaluate su dati che il modello non ha mai visto...
+904/904 [==============================] - 4s 4ms/step - loss: 0.2344 - accuracy: 0.9074
+Loss: 0.2343820482492447, Accuracy: 0.9074048399925232
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:144: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.figure(figsize=(10, 5))
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:147: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+904/904 [==============================] - 4s 4ms/step
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:156: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.figure(figsize=(8, 6))
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:164: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:167: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.plot(history.history['accuracy'])
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:172: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The p
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('p', -0.06440687005676073)
+('The', 0.02270135034501619)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The produc
+157/157 [==============================] - 1s 4ms/step
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('produc', -6.826990370564147e-31)
+('The', -6.817479183826414e-31)
+Test_instance: The product is 
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('product', 0.33738760978964283)
+('The', -0.0008763695480910687)
+('is', -0.0008752995830495681)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The product is reall
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('product', 0.3379744448068985)
+('The', -0.00028261479653102076)
+('is', -0.00026236973748859687)
+('reall', -0.00024755878145758575)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The product is really fan
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('product', 0.4098367978370798)
+('fan', 0.17557734873502823)
+('really', -0.0062216260259434575)
+('is', -0.004841927492277835)
+('The', -0.004826520668738779)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The product is really fantasti
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('product', 0.3381227004531134)
+('The', -9.831353702440611e-05)
+('really', -9.469991597411114e-05)
+('fantasti', -8.607051181389246e-05)
+('is', -8.299868925694462e-05)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The product is really fantastic!
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('fantastic', 0.6505912216023377)
+('product', 0.16017817562828393)
+('really', 0.012864713507990037)
+('is', 0.011470712486786825)
+('The', 0.011044701769513988)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The product is really fantastic!
+157/157 [==============================] - 1s 5ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('fantastic', 0.6475681909260812)
+('product', 0.1600623664795274)
+('is', 0.013648567482231967)
+('really', 0.012735350903850993)
+('The', 0.00993702975873985)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The product is really fantastic!
+157/157 [==============================] - 1s 5ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('fantastic', 0.6465312918745216)
+('product', 0.16011936837024635)
+('The', 0.01265086632188339)
+('really', 0.012318576662979181)
+('is', 0.011723652866054434)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The product is really fantastic!
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('fantastic', 0.6438692795356739)
+('product', 0.15865714453627017)
+('really', 0.012859210667731769)
+('The', 0.011446050548564752)
+('is', 0.010412390080944417)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The product is really fantastic!
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('fantastic', 0.6473223003964063)
+('product', 0.16246826228791467)
+('The', 0.01177291241408057)
+('really', 0.010216215419285897)
+('is', 0.007180148602710583)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The product is really fantastic!
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('fantastic', 0.6450128857592162)
+('product', 0.16503470458974356)
+('really', 0.01367433373336063)
+('is', 0.008952060260828312)
+('The', 0.007335177112072372)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The product is really fantastic!
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('fantastic', 0.6469519483875896)
+('product', 0.16156163702492013)
+('The', 0.014441484998994319)
+('really', 0.011311537451058753)
+('is', 0.008715666341803905)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The product is really fantastic!
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('fantastic', 0.646383635225005)
+('product', 0.1608656651053203)
+('really', 0.010865731641214295)
+('The', 0.010658577998372984)
+('is', 0.00948640426554532)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('I', 0.017380003451012118)
+('did', -0.006070723070529738)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not 
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.10154663945452869)
+('I', 0.01039279259114008)
+('did', 0.0041086395615839155)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not like 
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.13562383063148187)
+('like', 0.0318850035810357)
+('I', 0.025239541511848308)
+('did', 0.00868021759833873)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not like it at
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.23076314562809086)
+('at', 0.0631429875642254)
+('like', 0.04201901168516472)
+('I', 0.03952056234771189)
+('it', 0.009028774709128391)
+('did', 0.008481632281186823)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not like it at all,
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.23596682631827673)
+('at', 0.06163530090968853)
+('like', 0.03960184192500227)
+('I', 0.038383809541305436)
+('all', 0.006488962973236983)
+('did', 0.005962981895563385)
+('it', 0.004523610268156148)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not like it at all, terr
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.23227158646293586)
+('at', 0.05896852719466873)
+('like', 0.03832559038346974)
+('I', 0.03531121835889671)
+('it', 0.0048640422249776345)
+('terr', 0.0038179214870036455)
+('did', 0.0029257411389820094)
+('all', 0.002623168469758657)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not like it at all, terrible 
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.23407201156624233)
+('at', 0.058073548973639796)
+('I', 0.03724086912640128)
+('like', 0.03706269222676015)
+('it', 0.006690316873941137)
+('did', 0.004838883510251697)
+('all', 0.003819038108415991)
+('terrible', 0.00353794813439741)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not like it at all, terrible purch
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.23384872097844406)
+('at', 0.05889886787583401)
+('I', 0.036760637732688374)
+('like', 0.035993324849279196)
+('terrible', 0.005366903494424821)
+('purch', 0.004903511324808698)
+('all', 0.004226670844872481)
+('did', 0.0032927008261919915)
+('it', 0.00293904618857689)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not like it at all, terrible purchase.
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.3658196436396097)
+('purchase', 0.11679020323025235)
+('at', 0.09528724003745988)
+('I', 0.05448611523414026)
+('like', 0.05388277561894809)
+('terrible', 0.00800375926868834)
+('all', 0.007506892232819714)
+('did', 0.006321531409819332)
+('it', 0.0008846015886519988)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not like it at all, terrible purchase.
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.3667738116296435)
+('purchase', 0.11616798997378346)
+('at', 0.09489727392787028)
+('I', 0.05527818214800205)
+('like', 0.05266103792828415)
+('all', 0.006299076791690539)
+('terrible', 0.006196113696974478)
+('did', 0.006113898688838622)
+('it', 0.0050410624409275)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not like it at all, terrible purchase.
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.3675215965454225)
+('purchase', 0.11272369400424449)
+('at', 0.09488095839653642)
+('like', 0.05667961763773334)
+('I', 0.056402601982524773)
+('it', 0.007150560983305148)
+('all', 0.003039879487276827)
+('did', 0.0012264459774613849)
+('terrible', -0.000892617381961121)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not like it at all, terrible purchase.
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.36338344782124)
+('purchase', 0.11218828140031101)
+('at', 0.09501801646789577)
+('I', 0.056595006681975285)
+('like', 0.05206301253077653)
+('did', 0.00821753774767934)
+('terrible', 0.004714754965566948)
+('all', 0.002619731817134141)
+('it', 0.0009108064432757424)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not like it at all, terrible purchase.
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.36816785927459916)
+('purchase', 0.11206713495620858)
+('at', 0.09130630492333504)
+('I', 0.05773234332174121)
+('like', 0.05551524540831462)
+('terrible', 0.005729354833114684)
+('it', 0.005396249363731104)
+('all', 0.004346949996309116)
+('did', 0.0030396557095319467)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I did not like it at all, terrible purchase.
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('not', -0.371261252302997)
+('purchase', 0.11659903902934649)
+('at', 0.09357931001144776)
+('I', 0.05523245745723561)
+('like', 0.054687928279849064)
+('did', 0.009846492758896475)
+('it', 0.007054096731326082)
+('all', 0.006388469634920139)
+('terrible', 0.0029007909696359014)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The s
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('s', -0.03684062176057674)
+('The', 0.013011591306276483)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The servic
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('servic', 9.144472690795798e-31)
+('The', 9.14369972347785e-31)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The service was
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('service', -0.04140446826956471)
+('The', 0.00011457072271988148)
+('was', 0.00011284683025910742)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The service was exce
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('service', -0.04148208139140561)
+('The', 3.321875503051995e-05)
+('exce', 3.3132915142650835e-05)
+('was', 2.9020316210728276e-05)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The service was exception
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('exception', 0.14967979061117767)
+('service', -0.055476202779083716)
+('was', 0.0020803297273749156)
+('The', 0.0016298927253511548)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The service was exceptional, I
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('exceptional', 0.8007356645974006)
+('service', -0.04271372124638247)
+('I', 0.00958979379840128)
+('The', 0.001998158805757015)
+('was', 0.0015473643251578465)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The service was exceptional, I high
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('exceptional', 0.38341668614988034)
+('high', 0.326781190932418)
+('I', 0.02731718093537352)
+('service', -0.01639292255342957)
+('The', 0.015066940872472283)
+('was', 0.01440276784566434)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The service was exceptional, I highly re
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('exceptional', 0.547405156025461)
+('highly', 0.16402107581745443)
+('re', 0.0941017024916244)
+('I', 0.040719132172777596)
+('service', -0.024179206136700625)
+('The', 0.014973366382910948)
+('was', 0.011133170226881045)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The service was exceptional, I highly recomme
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('exceptional', 0.6592761509639092)
+('highly', 0.1497775211402957)
+('service', -0.037557632778074425)
+('I', 0.03306231394511359)
+('The', 0.0022210159186750403)
+('recomme', 0.002220533944364457)
+('was', 0.002131188505030885)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The service was exceptional, I highly recommend it
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('exceptional', 0.663304662739608)
+('highly', 0.1509431955037555)
+('service', -0.03637745054958063)
+('I', 0.028352970607296298)
+('recommend', 0.0014210238061575298)
+('was', -0.001258536343990748)
+('The', -0.0007049825836135472)
+('it', 0.0003224904861383579)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The service was exceptional, I highly recommend it!
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('exceptional', 0.6627123446002108)
+('highly', 0.14935102179963497)
+('service', -0.03543801707190775)
+('I', 0.029143956190190008)
+('The', 0.004716221287075503)
+('it', 0.004648272293139776)
+('recommend', 0.003829251955672059)
+('was', 0.0031113361576111005)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The service was exceptional, I highly recommend it!
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('exceptional', 0.6642768341380321)
+('highly', 0.15101054378045295)
+('service', -0.03680598028562553)
+('I', 0.027247301693459312)
+('recommend', 0.0038274945474609736)
+('The', 0.0033630709865379582)
+('it', 0.0019503100370017465)
+('was', -0.0001981087076542381)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The service was exceptional, I highly recommend it!
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('exceptional', 0.6616165149788042)
+('highly', 0.1493757638421806)
+('service', -0.03641334966451437)
+('I', 0.028903013186640437)
+('it', 0.005740900000354865)
+('The', 0.0029417319800075174)
+('was', 0.0028213010267730187)
+('recommend', 0.0008339819576087717)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The service was exceptional, I highly recommend it!
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('exceptional', 0.6645913890344504)
+('highly', 0.14663665703259807)
+('service', -0.03505547243615935)
+('I', 0.029705794077039032)
+('recommend', 0.002767456343137743)
+('it', 0.002735787461222075)
+('was', 0.0010202953642365195)
+('The', -0.00024146633297533106)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm q
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('q', -0.08864251278752297)
+('I', 0.0002375809108413033)
+('m', 0.0002322357847880439)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite 
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('quite', 0.15886240684677455)
+('m', -0.0004143790954412465)
+('I', -0.00040722885658438294)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite satis
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('quite', 0.15912540568060107)
+('m', -0.0001301607073359581)
+('satis', -0.0001238322941959633)
+('I', -0.00012096656160416619)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite satisfied 
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('satisfied', 0.7578973076254525)
+('quite', 0.09106479870643629)
+('m', 0.007106978635749709)
+('I', 0.006348333464958186)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite satisfied with 
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('satisfied', 0.7583238813817107)
+('quite', 0.09288747800442147)
+('with', 0.005517293016722923)
+('m', 0.004653956790153293)
+('I', 0.004481421330526184)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite satisfied with this 
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('satisfied', 0.7564565481477211)
+('quite', 0.09023543465622076)
+('with', 0.003852177148124501)
+('I', 0.002840033180146155)
+('this', 0.0027635734386371054)
+('m', 0.002501889335797539)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite satisfied with this produ
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('satisfied', 0.7569421715114203)
+('quite', 0.09068680896660102)
+('I', 0.0029153131542322716)
+('with', 0.002685333633401515)
+('produ', 0.0026367535097192936)
+('this', 0.0016010112760973649)
+('m', 0.00106098618233924)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite satisfied with this product, i
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('satisfied', 0.4736825055707961)
+('product', 0.1660992437742128)
+('quite', 0.10297573498181038)
+('m', 0.014240234831456713)
+('i', 0.011832619389624082)
+('this', 0.009868218781688962)
+('with', 0.008280466028244355)
+('I', 0.00670261773346239)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite satisfied with this product, it exc
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('satisfied', 0.49597401578530276)
+('product', 0.1662433658031869)
+('quite', 0.09949336213146333)
+('with', 0.011023784913261293)
+('m', 0.007248265388749826)
+('I', 0.005629082138140145)
+('it', 0.0044919467128276)
+('exc', 0.003109615184772216)
+('this', 0.0027246736682149902)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite satisfied with this product, it exceeded
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('satisfied', 0.5037701750367106)
+('product', 0.16471734918990688)
+('quite', 0.09921024755914934)
+('m', 0.006430844455563757)
+('this', 0.006199247068668257)
+('I', 0.004607491122564081)
+('with', 0.004511313366717345)
+('exceeded', 0.003270928295168954)
+('it', 0.002475573199941952)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite satisfied with this product, it exceeded my e
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('e', -0.5060493975447382)
+('satisfied', 0.44009046052644596)
+('product', 0.22901681835851492)
+('quite', 0.16430432226675154)
+('it', -0.015310390358062668)
+('with', -0.007740290108826922)
+('my', -0.007535354869796928)
+('m', -0.006332669180408156)
+('exceeded', -0.005552010151974603)
+('I', 0.002446584367191753)
+('this', -0.00045617439369636387)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite satisfied with this product, it exceeded my expect
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('satisfied', 0.34695589285859396)
+('product', 0.14629321061921385)
+('expect', 0.10624066003818905)
+('quite', 0.09448609483429052)
+('exceeded', 0.009526715722845958)
+('it', 0.0089818202443071)
+('I', 0.0052448883067785805)
+('with', 0.0026879335622695916)
+('this', -0.0008067848975935655)
+('m', 0.000420337840482083)
+('my', -0.00013894934843222456)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite satisfied with this product, it exceeded my expectation
+157/157 [==============================] - 1s 4ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('satisfied', 0.2519380957916683)
+('expectation', 0.16806175063917816)
+('product', 0.10896026584295038)
+('quite', 0.06710970912715249)
+('my', 0.0090092362544829)
+('it', 0.0061636305871041585)
+('this', 0.003277234583530534)
+('I', -0.002161885915519308)
+('m', 0.001906062264036348)
+('with', 0.0016830527183676774)
+('exceeded', 0.0012230342972502424)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: I'm quite satisfied with this product, it exceeded my expectations.
+157/157 [==============================] - 1s 3ms/step
+Label reale: Positive
+Previsione del modello: Positive
+
+Spiegazione Lime:
+('satisfied', 0.5116130483935198)
+('product', 0.16110854418122716)
+('quite', 0.10248662919085434)
+('with', 0.00847200393005422)
+('I', 0.007863255830883733)
+('expectations', 0.0061535494170106625)
+('my', 0.0039595088170221995)
+('this', 0.0024627192781464637)
+('it', 0.00240673282083315)
+('exceeded', 0.0006624526951102711)
+('m', -0.00013547771052348153)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not w
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.024689138694594163)
+('w', -0.012537593462126127)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth 
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.3778288113219551)
+('worth', 0.31381093406631283)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth the m
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.4333502267484154)
+('worth', 0.20369469085016081)
+('the', 0.03420944749703963)
+('m', 0.033359896285490416)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth the money,
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.5105322216356517)
+('worth', 0.2520425981984747)
+('money', 0.09362316248703102)
+('the', 0.055611479187320845)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth the money, very
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.5229788209072606)
+('worth', 0.24596953961846246)
+('money', 0.0742719507519822)
+('the', 0.02800879137560346)
+('very', 0.025804024646196883)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth the money, very disa
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.5174074425970283)
+('worth', 0.23628755785102007)
+('money', 0.05029706085833171)
+('disa', 0.023635433683520217)
+('the', 0.0177640379012686)
+('very', 0.010767743912887835)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth the money, very disappoin
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.5226321276497724)
+('worth', 0.24150918599213334)
+('money', 0.058862231178108085)
+('the', 0.026543676163632693)
+('disappoin', 0.019600855114911837)
+('very', 0.018700046786702666)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth the money, very disappointed w
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.34629675325468584)
+('worth', 0.17164992249559727)
+('w', -0.06978171089752062)
+('money', 0.04171001003493624)
+('disappointed', 0.012363114453422634)
+('very', 0.009387084806218754)
+('the', 0.0041702012573463145)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth the money, very disappointed with t
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.5216485225778669)
+('worth', 0.24167467070702756)
+('money', 0.041723450144685544)
+('with', 0.015418862452506472)
+('t', 0.010983989746898806)
+('the', 0.008860541902285779)
+('very', 0.005384469163045819)
+('disappointed', -0.002299865004179475)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth the money, very disappointed with the qu
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.5073789504199141)
+('worth', 0.22164728041139553)
+('money', 0.05432407835688008)
+('disappointed', 0.02155858442917869)
+('very', 0.013649277350662741)
+('the', 0.01281608743876945)
+('with', 0.008551605707967981)
+('qu', 0.0018856676921142719)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth the money, very disappointed with the quality
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.5803676746629297)
+('worth', 0.2691840830014128)
+('quality', 0.09664808593509111)
+('money', 0.054363573099417334)
+('disappointed', 0.012055914197551415)
+('the', 0.011602763067553626)
+('with', 0.008984282385018154)
+('very', 0.002951708233492973)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth the money, very disappointed with the quality.
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.5827571187789599)
+('worth', 0.2797093157745797)
+('quality', 0.09763299129487416)
+('money', 0.05955035152713815)
+('disappointed', 0.016820522545369282)
+('the', 0.01325064135845475)
+('very', 0.007576461935424498)
+('with', 0.006344996232334212)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth the money, very disappointed with the quality.
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.5898899764178662)
+('worth', 0.27947581878802613)
+('quality', 0.09826998311969681)
+('money', 0.05972670777056328)
+('with', 0.012226304072625344)
+('very', 0.009496664959665524)
+('disappointed', 0.00821675557465201)
+('the', -0.0018953262032888733)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: Not worth the money, very disappointed with the quality.
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('Not', -0.5918772251213577)
+('worth', 0.2728576530560428)
+('quality', 0.1038543812835066)
+('money', 0.06395473573754998)
+('very', 0.017036361106832716)
+('with', 0.015270541623043584)
+('disappointed', 0.012185276818830571)
+('the', 0.009269505633999671)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The d
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('d', -0.05766046848711251)
+('The', 0.020214701337128726)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delive
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('The', 0.0)
+('delive', 0.0)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delivery wa
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('delivery', -0.046151564707792525)
+('The', -0.007201467148020081)
+('wa', 0.0015907738810438375)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delivery was pro
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('pro', -0.03357659284324172)
+('delivery', -0.029248312384827075)
+('was', -0.0048086517606071)
+('The', -0.004538586833097016)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delivery was prompt, 
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('delivery', -0.036344635086071275)
+('prompt', -0.012395636709388879)
+('The', -0.0038266872525267266)
+('was', -0.003579924842132905)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delivery was prompt, but t
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('delivery', -0.027222384858964083)
+('prompt', -0.016139744681835128)
+('t', 0.008759032783420622)
+('but', -0.000951964298420207)
+('was', -0.0006073604886384278)
+('The', -0.0005320543573024263)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delivery was prompt, but the pr
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('delivery', -0.01969037644632377)
+('prompt', -0.012233151039385026)
+('pr', -0.008529547979984444)
+('the', -0.0011294488339299589)
+('The', -0.0009599578955154188)
+('was', -0.0002675338367462689)
+('but', -0.00016621657083773131)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delivery was prompt, but the product
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('product', 0.20656656513657373)
+('delivery', -0.0858014433923081)
+('prompt', -0.06753625470012112)
+('the', 0.002680037593476631)
+('The', 0.0012349363801142012)
+('was', 0.0008072508380551381)
+('but', 0.000438775896141777)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delivery was prompt, but the product didn
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('product', 0.20775758902069055)
+('delivery', -0.08545325215011379)
+('prompt', -0.06618039964935496)
+('didn', -0.0020914801212938944)
+('but', -0.0007993164044096345)
+('The', -0.0006314039504708015)
+('the', 9.251559107917174e-05)
+('was', 4.1492411761255126e-05)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delivery was prompt, but the product didn't me
+157/157 [==============================] - 1s 4ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('me', -0.16758208848495512)
+('product', 0.08051429466085742)
+('delivery', -0.03270264921984816)
+('prompt', -0.024546128564922592)
+('t', 0.003399681725816718)
+('was', -0.003270486889774208)
+('The', -0.0031585697214431842)
+('didn', -0.0018546565036486919)
+('but', -0.0015116642170539694)
+('the', -0.0014444088869798035)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delivery was prompt, but the product didn't meet my
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('product', 0.20814211338287672)
+('delivery', -0.0873330200842622)
+('prompt', -0.06739263042146162)
+('the', -0.0021891530734170334)
+('was', 0.0020659974773459574)
+('didn', 0.0017846487892764597)
+('but', 0.0011197475762137836)
+('The', 0.00108335277262007)
+('meet', 0.00081510158271241)
+('t', -0.0003798121572156136)
+('my', -0.00014758464258174758)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delivery was prompt, but the product didn't meet my expe
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('product', 0.209483502385232)
+('delivery', -0.08752215736640374)
+('prompt', -0.06879145824592384)
+('t', 0.001605891396437702)
+('didn', 0.001275973266562606)
+('my', -0.0012117564667301522)
+('was', 0.0011873732400939196)
+('expe', 0.0010477760918229447)
+('meet', -0.0005146546122631442)
+('but', -0.0004319812613076387)
+('the', 0.00035392147665149046)
+('The', -0.00012568877827609618)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delivery was prompt, but the product didn't meet my expectati
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('product', 0.20761545143021004)
+('delivery', -0.08293469145220611)
+('prompt', -0.06423801824056624)
+('but', -0.0014160881708484023)
+('meet', -0.001299653054780496)
+('expectati', -0.0010342205031217701)
+('t', -0.0008635587700529603)
+('didn', 0.0008101037329135743)
+('my', -0.0005202776024749514)
+('The', 0.0004991000723007877)
+('the', -0.0004292279817613899)
+('was', -0.0003348427355063723)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+Test_instance: The delivery was prompt, but the product didn't meet my expectations.
+157/157 [==============================] - 1s 3ms/step
+Label reale: Negative
+Previsione del modello: Negative
+
+Spiegazione Lime:
+('product', 0.20799605675710073)
+('delivery', -0.08661359517695366)
+('prompt', -0.06939505378543373)
+('expectations', 0.00264403064746231)
+('but', 0.0014741087108562367)
+('The', -0.0011385348741873625)
+('was', 0.0011095489799458583)
+('the', -0.0010751510951239117)
+('didn', 0.0008734579804592332)
+('meet', 0.000702257313728239)
+('t', 0.0004683103815468519)
+('my', 0.00038059700309056013)
+C:\Users\Genny\PycharmProjects\Sentiment_Analysis\RNN-LSTM.py:200: MatplotlibDeprecationWarning: Support for FigureCanvases without a required_interactive_framework attribute was deprecated in Matplotlib 3.6 and will be removed two minor releases later.
+  plt.show()
+
+Process finished with exit code 0

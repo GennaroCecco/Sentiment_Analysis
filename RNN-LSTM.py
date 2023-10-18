@@ -33,14 +33,13 @@ positivi = dataset_all[dataset_all['category'] == 1]
 negativi = dataset_all[dataset_all['category'] == -1]
 
 print("#Tweet in Twitter_Data.csv: " + str(len(dataset_all)))
-print("#Tweet Positivi in Twitter_Data.csv prima del sottocampionamento: " + str(len(positivi)))
-print("#Tweet Negativi in Twitter_Data.csv prima del sottocampionamento: " + str(len(negativi)))
-#positivi = resample(positivi, replace=False, n_samples=(len(negativi)+2000), random_state=42)
+print("#Tweet Positivi in Twitter_Data.csv: " + str(len(positivi)))
+print("#Tweet Negativi in Twitter_Data.csv: " + str(len(negativi)))
 negativi = pd.concat([negativi, nuovi_negativi_df], ignore_index=True)
 dataset = pd.concat([positivi, negativi], ignore_index=True)
 print("#Tweet in Dataset------>: " + str(len(dataset)))
-print("#Tweet Positivi in dataset dopo il sovrapopolamento: " + str(len(positivi)))
-print("#Tweet Negativi in dataset dopo il sovrapopolamento: " + str(len(negativi)))
+print("#Tweet Positivi in dataset: " + str(len(positivi)))
+print("#Tweet Negativi in dataset: " + str(len(negativi)))
 
 train_ratio = 0.8
 df_shuffled = dataset.sample(frac=1, random_state=42)
@@ -75,8 +74,8 @@ X_val = pad_sequences(X_val, max_length)
 
 tokenizer_path = "tokenizer.pkl"
 print("Sto salvando il tokenizer...")
-#with open(tokenizer_path, 'wb') as f:
- #   pickle.dump(tokenizer, f)
+with open(tokenizer_path, 'wb') as f:
+    pickle.dump(tokenizer, f)
 
 X_val = np.lib.pad(X_val, ((0, 0), (X_train.shape[1] - X_val.shape[1], 0)), 'constant', constant_values=(0))
 Y_train = np.array(pd.get_dummies((df_train['category']).values))
@@ -106,7 +105,7 @@ model.summary()
 print("Addestro il modello con Early Stopping e ReduceLROnPlateau...")
 history = model.fit(X_train, Y_train, epochs=epochs, batch_size=batch_size, verbose=1, validation_split=0.2,
                     callbacks=[early_stopping, reduce_lr])
-#model.save('modello.h5')
+model.save('modello.h5')
 
 if 'lr' in history.history:
     min_lr = min(history.history['lr'])
