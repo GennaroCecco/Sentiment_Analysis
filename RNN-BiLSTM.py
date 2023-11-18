@@ -1,7 +1,4 @@
-
 import pickle
-import random
-
 from keras.src.layers import Bidirectional, BatchNormalization
 from lime.lime_text import LimeTextExplainer
 import nltk
@@ -192,7 +189,7 @@ def explore_instances_and_text_sizes(instances, text_sizes, labels):
             explanation = explainer.explain_instance(test_instance, predict_fn, num_features=20)
 
             print("Label reale:", "Positive" if test_label == 1 else "Negative")
-            print("Previsione del modello:", "Positive" if explanation.predict_proba[1] > 0.5 else "Negative")
+            print("Previsione del modello:", "Positive" if explanation.predict_proba[1] >= 0.1 else "Negative")
 
             print("\nSpiegazione Lime:")
             for i in range(len(explanation.as_list())):

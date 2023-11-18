@@ -1,0 +1,138 @@
+body {
+    background-color: rgb(32, 30, 30);
+    color: white;
+}
+
+#titoloRNN {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100px;
+    width: 50%;
+    margin: auto;
+    background: hsl(0, 0%, 15%);
+    border-radius: 10px;
+    text-align: center;
+    padding-top: -10px;
+    line-height: 1;
+    overflow: hidden;
+}
+
+#h1titolo {
+    white-space: pre-line;
+    margin-top: 1rem;
+    transition: color 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform-origin: bottom center;
+}
+
+#h1titolo:hover {
+    color: #3498db;
+    transform: scale(1.1);
+}
+
+#corpoRNN {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40rem;
+    background: hsl(0, 0%, 15%);
+    border-radius: 10px;
+    text-align: left;
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+#corpoTitolo {
+    margin-top: -0.6rem;
+}
+
+#corpoRNN form {
+    display: block;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#corpoRNN label {
+    margin-bottom: 10px;
+}
+
+#uploadForm {
+    margin-top: 1rem;
+}
+
+#btnInvia {
+    margin-top: 1rem;
+    border-radius: 7px;
+    margin-right: 0.7rem;
+    background-color: white;
+    cursor: pointer;
+    width: 4rem;
+    height: 2rem;
+    transition: all 2s ease;
+}
+
+#btnInvia:hover {
+    background-color: #3498db;
+}
+
+#restart {
+    margin-top: 1rem;
+    border-radius: 7px;
+    margin-right: 0.7rem;
+    background-color: white;
+    cursor: pointer;
+    width: 4rem;
+    height: 2rem;
+    transition: all 2s ease;
+}
+
+#restart:hover {
+    background-color: #3498db;
+}
+
+#gru {
+    cursor: pointer;
+    transition: all 2s ease;
+    animation: animazioneGru 0.5s ease-in-out;
+}
+
+#lstm {
+    cursor: pointer;
+    transition: all 2s ease;
+    animation: animazioneGru 0.5s ease-in-out;
+}
+
+#bilstm {
+    cursor: pointer;
+    transition: all 2s ease;
+    animation: animazioneGru 0.5s ease-in-out;
+}
+
+#gru:active {
+    animation: none;
+}
+
+#lstm:active {
+    animation: none;
+}
+
+#bilstm:active {
+    animation: none;
+}
+
+@keyframes animazioneGru {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

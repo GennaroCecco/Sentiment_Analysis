@@ -1,6 +1,4 @@
 import pickle
-import random
-
 from keras.src.layers import BatchNormalization, GRU
 from lime.lime_text import LimeTextExplainer
 import nltk

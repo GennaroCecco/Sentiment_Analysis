@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>RNN for Sentiment Analysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<div id="titoloRNN">
+    <h1 id="h1titolo">Recurrent Neural Network for S.A<br> developed by GennaroCecco</h1>
+</div>
+
+<div id="corpoRNN">
+    <h1 id="corpoTitolo">Configurazione Analisi:</h1>
+    <form id="radioForm">
+        <label>
+            <input type="radio" name="scelta" value="lstm" id="lstm">
+            LSTM
+        </label>
+
+        <label>
+            <input type="radio" name="scelta" value="bilstm" id="bilstm">
+            BiLSTM
+        </label>
+
+        <label>
+            <input type="radio" name="scelta" value="gru" id="gru">
+            GRU
+        </label>
+    </form>
+
+    <form id="uploadForm">
+        <label for="fileInput">Seleziona un file di testo:</label>
+        <input type="file" id="fileInput" accept=".txt"/>
+    </form>
+
+    <input type="button" value="Invia" id="btnInvia">
+
+</div>
+</body>
+</html>
+<script>
+    $('#btnInvia').on('click', function () {
+        inviaDati();
+        $('#corpoTitolo, #radioForm, #uploadForm, #btnInvia').hide();
+    });
+</script>
