@@ -1,78 +1,77 @@
-import sys
+from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
+import logging
+import os
+import tensorflow as tf
+from RUNNER.RunBiLSTM import RNNBILSTM
+from RUNNER.RunGRU import RNNGRU
+from RUNNER.RunLSTM import RNNLSTM
 
-from PyQt5.QtGui import QPalette, QColor
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QFrame, QLabel
-from PyQt5.QtCore import Qt
+app = Flask(__name__)
+CORS(app)
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+app.jinja_env.add_extension('jinja2.ext.loopcontrols')
+UPLOAD_FOLDER = 'uploadTxt'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+risultato = "lorem ipsum"
 
-class GrayFrame(QFrame):
-    def __init__(self):
-        super().__init__()
+def runSelectRNN(typeRnn, fileName):
+    if typeRnn == "lstm":
+        app.logger.info("Init rete LSTM")
+        rnn = RNNLSTM(fileName)
+        app.logger.info("Calocolo Sentimenti")
+        percentualePos, percentualeNeg = rnn.analyze_sentiments_Percentage()
+        ris = f"Percentuale positivi '{percentualePos}%'<br>Percentuale negativi '{percentualeNeg}%'"
+        print(ris)
+        return ris
+    elif typeRnn == "bilstm":
+        app.logger.info("Init rete BiLSTM")
+        rnn = RNNBILSTM(fileName)
+        app.logger.info("Calocolo Sentimenti")
+        percentualePos, percentualeNeg = rnn.analyze_sentiments_Percentage()
+        ris = f"Percentuale positivi '{percentualePos}%'<br>Percentuale negativi '{percentualeNeg}%'"
+        print(ris)
+        return ris
+    else:
+        app.logger.info("Init rete GRU")
+        rnn = RNNGRU(fileName)
+        app.logger.info("Calocolo Sentimenti")
+        percentualePos, percentualeNeg = rnn.analyze_sentiments_Percentage()
+        ris = f"Percentuale positivi '{percentualePos}%'<br>Percentuale negativi '{percentualeNeg}%'"
+        print(ris)
+        return ris
 
-        self.setObjectName("GrayFrame")
-        # Applica il colore RGB(34, 34, 34) come sfondo
-        palette = QPalette()
-        palette.setColor(QPalette.Window, QColor(65, 65, 65))
-        self.setPalette(palette)
-        self.setStyleSheet("""
-            QFrame#GrayFrame {
-                border-radius: 20px;
-            }
-        """)
-        # Crea un layout per il frame grigio e centra il suo contenuto
-        layout = QVBoxLayout(self)
-        layout.setAlignment(Qt.AlignTop)
 
-        # Aggiungi un QLabel per la scritta in alto
-        text_label = QLabel("Hello, World!", self)
-        text_label.setStyleSheet("color: white; background-color: transparent;")
-        layout.addWidget(text_label)
+@app.route('/')
+def index():
+    return render_template('index.html', title='Home', username='Genny', risultato=risultato)
 
-def main():
-    app = QApplication(sys.argv)
-    window = QWidget()
-    window.setWindowTitle("Two Frames Example")
-    window.setGeometry(100, 100, 700, 500)
 
-    layout = QVBoxLayout(window)
-    layout.setContentsMargins(0, 0, 0, 0)
+@app.route('/ricevi-dati', methods=['POST'])
+def ricevi_dati():
+    global risultato
 
-    black_frame = QFrame(window)
-    black_frame.setObjectName("BlackFrame")
-    layout.addWidget(black_frame)
+    try:
+        scelta = request.form.get('scelta')
+        file = request.files.get('file')
 
-    # Crea un layout per il frame nero e centra il suo contenuto
-    black_layout = QVBoxLayout(black_frame)
-    black_layout.setAlignment(Qt.AlignCenter)
+        if file:
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
 
-    gray_frame = GrayFrame()
-    black_layout.addWidget(gray_frame)
+            if os.path.exists(file_path):
+                os.remove(file_path)
+                app.logger.info(f"File '{file.filename}' già esistente. Vecchio file cancellato.")
 
-    window.setStyleSheet("""
-        QWidget {
-            background-color: rgb(27,27,27);
-        }
-        #BlackFrame {
-            background-color: rgb(27,27,27);
-            z-index: 0;
-        }
-        #GrayFrame {
-            background-color: rgb(65,65,65);
-            border-radius: 20px;
-            z-index: 1;
-        }
-         #GrayLabel {
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-        }
-    """)
+            file.save(file_path)
+            app.logger.info(f"Tipo rete '{scelta}' e file '{file.filename}' inviati con successo")
 
-    # Imposta le dimensioni esplicite per entrambi i frame
-    black_frame.setFixedSize(900, 800)
-    gray_frame.setFixedSize(700, 700)
+        risultato = runSelectRNN(scelta, file.filename)
+        print(f"Risultato: {risultato}")
 
-    window.show()
-    sys.exit(app.exec_())
+        return risultato
+    except Exception as e:
+        return f'Errore durante la gestione della richiesta: {str(e)}'
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    app.run(port=8080)
