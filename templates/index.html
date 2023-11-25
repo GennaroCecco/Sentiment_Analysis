@@ -5,17 +5,68 @@
     <title>RNN for Sentiment Analysis</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            // Imposta la posizione di scorrimento all'inizio quando la pagina è completamente caricata
+            $('html, body').animate({scrollTop: 0}, 'slow');
+
+            // Aggiungi l'evento di click per il ritorno all'inizio
+            $('#scrollToTop').click(function () {
+                $('html, body').animate({scrollTop: 0}, 'slow');
+            });
+        });
+
+    </script>
 </head>
 <body>
+<header>
+    <div class="content flex"></div>
+    <img src="{{ url_for('static', filename='Unisa.png') }}" alt="Università degli Studi di Salerno" id="logoUnisa"
+         title="Università degli studi di Salerno">
+    <h1>Università degli Studi di Salerno</h1>
+    <nav class="nav">
+        <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li class="has-children"><a href="#">Projects<i class="fas fa-caret-down"></i><i
+                    class="fas fa-caret-up"></i>
+            </a>
+                <ul class="sub-menu">
+                    <li id="NW"><a href="https://github.com/GennaroCecco/Sentiment_Analysis.git">Neural Network</a></li>
+                    <li id="NW"><a href="#">ComingSoon</a></li>
+
+                </ul>
+            </li>
+            <li class="has-children"><a href="#">About Me<i class="fas fa-caret-down"></i><i
+                    class="fas fa-caret-up"></i>
+            </a>
+                <ul class="sub-menu">
+                    <li id="NW"><a href="https://gennarocecco.github.io/g3nnyWebSite/">WebSite</a></li>
+                    <li id="NW"><a href="#">ComingSoon</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<div class="icon-container">
+    <i class="fas fa-light fa-atom rotating-icon"></i>
+</div>
 
 <div id="titoloRNN">
     <h1 id="h1titolo">Recurrent Neural Network for S.A<br> developed by GennaroCecco</h1>
 </div>
+<div class="container-atom">
+    <i class="fas fa-light fa-atom rotating-icon"></i>
+</div>
 
 <div id="corpoRNN">
-    <h1 id="corpoTitolo">Configurazione Analisi:</h1>
+    <h1 id="corpoTitolo">Select RNN for analysis:</h1>
     <form id="radioForm">
         <label>
             <input type="radio" name="scelta" value="lstm" id="lstm">
@@ -34,18 +85,47 @@
     </form>
 
     <form id="uploadForm">
-        <label for="fileInput">Seleziona un file di testo:</label>
-        <input type="file" id="fileInput" accept=".txt"/>
+        <label for="fileInput" id="">Select a text file:</label>
+        <input type="file" id="fileInput" accept=".txt" title="Select file"/>
     </form>
 
-    <input type="button" value="Invia" id="btnInvia">
+    <input type="button" value="Submit" id="btnInvia">
+
 
 </div>
+
+<div class="contenitoreAtomo">
+    <i class="fas fa-light fa-atom rotating-icon"></i>
+</div>
+<div class="contenitoreAtomo2">
+    <i class="fas fa-light fa-atom rotating-icon"></i>
+</div>
+
+<footer>
+    <p>Follow me on</p>
+    <div class="social-icons">
+        <!-- Icona Git -->
+        <a href="https://github.com/GennaroCecco" target="_blank" class="icon-link"><i class="fab fa-github"
+                                                                                       title="Github"></i></a>
+
+        <!-- Icona LinkedIn -->
+        <a href="https://www.linkedin.com/in/gennaro-cecco-19987a226/" target="_blank" class="icon-link"><i
+                class="fab fa-linkedin" title="LinkedIn"></i></a>
+
+        <!-- Icona Instagram -->
+        <a href="https://instagram.com/genny__cecco?igshid=OGQ5ZDc2ODk2ZA==" target="_blank" class="icon-link"><i
+                class="fab fa-instagram" title="Instagram"></i></a>
+    </div>
+
+    <div id="scrollToTop" title="Go back up">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+</footer>
 </body>
 </html>
 <script>
     $('#btnInvia').on('click', function () {
         inviaDati();
-        $('#corpoTitolo, #radioForm, #uploadForm, #btnInvia').hide();
+        $('#corpoTitolo, #radioForm, #uploadForm, #btnInvia, #titoloRNN').hide();
     });
 </script>
